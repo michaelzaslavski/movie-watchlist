@@ -1,0 +1,18 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: 50px;
+    background-color: #f4f4f4;
+}
+.nav-title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-around;
+}
+.serch-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
