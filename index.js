@@ -2,8 +2,15 @@ const apikey = '5b895994'
 const searchInput = document.getElementById('search')
 const btnSearch = document.getElementById('btn-search')
 
+const searchForm = document.getElementById('search-form');
+if (searchForm){
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // CRITICAL: This stops the page from refreshing
+    Search();     // Call your search function here
+});
+}
 
-async function search(){
+async function Search(){
 
 const res = await fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${searchInput.value}`)
 const data = await res.json()
@@ -22,27 +29,35 @@ if (data.Search){
     }
 }
 if (btnSearch){
-btnSearch.addEventListener('click', search)
+btnSearch.addEventListener('click', Search)
 }
 
 export function renderMovies(movies, containerId, isWatchlist=false){
     const container = document.getElementById(containerId)
     const moviesHTML = movies.map(movie => {
         return `
-        <div class="movie">
-             <h3>${movie.Title} (${movie.Year}) <span>⭐ ${movie.imdbRating}</span></h3>
-             <img src="${movie.Poster !== 'N/A' ? movie.Poster : 'placeholder.jpg'}" alt="${movie.Title}">
-                <div class="movie-info">
-              <p>${movie.Runtime}</p>
+       
+ <div class="movie">
+    <img src="${movie.Poster !== 'N/A' ? movie.Poster : 'placeholder.jpg'}" alt="${movie.Title}">
+    
+    <div class="movie-info">
+        <h3>${movie.Title} <span>⭐ ${movie.imdbRating}</span></h3>
+        
+        <div class="meta-row">
+             <p>${movie.Runtime}</p>
              <p>${movie.Genre}</p>
-             ${isWatchlist
-             ? `<button class="remove-btn" data-id="${movie.imdbID}">- Remove</button>`
-             : `<button class="add-btn" data-id="${movie.imdbID}">+ Watchlist</button>`
-              }
-             <p><strong>Plot:</strong> ${movie.Plot}</p>
         </div>
 
-`}).join('')
+        ${isWatchlist
+            ? `<button class="remove-btn" data-id="${movie.imdbID}">⊖ Remove</button>`
+            : `<button class="add-btn" data-id="${movie.imdbID}">⊕ Watchlist</button>`
+        }
+        <p class="plot-text">${movie.Plot}</p>
+    </div>
+</div>
+`
+
+}).join('')
     container.innerHTML = moviesHTML
 }
 

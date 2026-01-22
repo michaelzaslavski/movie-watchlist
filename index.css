@@ -1,18 +1,251 @@
 body{
     font-family: Arial, sans-serif;
-    margin: 50px;
-    background-color: #f4f4f4;
+    margin: 0px;
+    background-color: #2c2c2c;
 }
 .nav-title {
     display: flex;
     align-items: center;
-    gap: 20px;
-    justify-content: space-around;
+    justify-content: space-between;
+    
+    /* Ensure the container takes full width */
+    width: 100%;
+    /* Use min-height instead of heavy padding to keep it consistent */
+    min-height: 350px; 
+    
+    
+
+    /* The Fix for the Background */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                      url('https://www.blessthisstuff.com/imagens/listagem/2021/grande/grande_minimalist-movie-posters.jpg');
+    background-position: center;
+    background-size: cover;      /* This forces the image to fill the div */
+    background-repeat: no-repeat; /* This prevents the "stretching/repeating" look */
+    
+    color: white;
 }
-.serch-bar {
+
+.nav-title h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-left: 1em;
+}
+
+.nav-title a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 1em;
+}
+.nav-title-watchlist{ display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    /* Ensure the container takes full width */
+    width: 100%;
+    /* Use min-height instead of heavy padding to keep it consistent */
+    min-height: 350px; 
+    
+    
+
+    /* The Fix for the Background */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                      url('https://www.blessthisstuff.com/imagens/listagem/2021/grande/grande_minimalist-movie-posters.jpg');
+    background-position: center;
+    background-size: cover;      /* This forces the image to fill the div */
+    background-repeat: no-repeat; /* This prevents the "stretching/repeating" look */
+    
+    color: white;
+}
+.nav-title-watchlist h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-left: 1em;
+}
+
+.nav-title-watchlist a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 1em;
+}
+.search-bar {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0PX;
     justify-content: center;
     margin-top: 20px;
+}
+input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#btn-search {
+    padding: 10px 15px;
+    background-color: #FFD700;
+    color: #333333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#btn-search:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+.movie {
+    display: flex;
+    align-items: flex-start; /* Aligns image and info at the top */
+    gap: 20px; /* Space between poster and info */
+    padding: 20px 5em;
+    border-radius: 5px;
+    border-bottom: 1px solid #333333; /* The divider line */
+    max-width: 800px; /* Ensures it doesn't stretch too wide on big screens */
+    margin: 0 auto; /* Centers the list */
+}
+.movie:hover {
+    background-color: #545454; /* Slightly lighter background on hover */
+    transition: background-color 0.3s ease;
+}
+
+/* === The Poster Image === */
+.movie img {
+    width: 110px; /* Fixed width for consistency */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 8px; /* Rounded corners */
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* === The Right-Side Info Block === */
+.movie-info {
+    flex: 1; /* Takes up all remaining horizontal space */
+    display: flex;
+    flex-direction: column;
+}
+
+/* === Title and Rating === */
+.movie-info h3 {
+    margin: 0 0 8px 0; /* Remove default top margin, small bottom space */
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center; /* Vertically centers rating with text */
+    flex-wrap: wrap; /* Allows rating to wrap on tiny screens */
+    gap: 10px;
+}
+
+.movie-info h3 span {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #FFD700; /* Gold color for the star/rating */
+    background: #929292; /* Optional: small dark badge background */
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* === Meta Row (Runtime & Genre) === */
+.meta-row {
+    display: flex;
+    gap: 15px; /* Space between runtime and genre */
+    margin-bottom: 15px;
+    color: #a5a5a5; /* Lighter gray text */
+    font-size: 0.9rem;
+}
+
+.meta-row p {
+    margin: 0; /* Removes default paragraph margins */
+}
+
+/* === Buttons (Watchlist/Remove) === */
+/* We remove default button styles to make them look like clickable text links */
+.add-btn, .remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    padding: 0;
+    margin-bottom: 12px;
+    width: fit-content;
+    transition: color 0.2s ease;
+}
+
+.add-btn {
+    color: #aeaeae;
+}
+
+.add-btn:hover {
+    color: #FFD700; /* Gold hover effect */
+}
+
+.remove-btn {
+    color: #ff6b6b; /* Redish color for remove */
+}
+
+.remove-btn:hover {
+    color: #ff4d4d;
+}
+
+/* === The Plot Text === */
+.plot-text {
+    margin: 0;
+    color: #cccccc; /* Slightly lighter than main text, darker than meta */
+    line-height: 1.5; /* Better readability */
+    font-size: 0.95rem;
+}
+
+
+
+
+/* === empty and watchlist-section === */
+/* === Watchlist Empty State === */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* This ensures it takes up significant space in the middle of the page */
+    min-height: 50vh; 
+    padding: 20px;
+}
+
+.empty-state p {
+    color: #a5a5a5; /* Dimmed text color */
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.empty-state a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Adding a plus icon effect before the link text */
+.empty-state a::before {
+    content: '⊕'; /* You can also use an actual SVG icon here */
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+.empty-state a:hover {
+    color: #FFD700; /* Gold hover to match your search accent */
+    transform: scale(1.05); /* Slight "pop" effect */
+}
+
+.empty-state a:hover::before {
+    color: #FFD700;
 }
